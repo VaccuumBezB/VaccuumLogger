@@ -10,7 +10,8 @@ you can use this NuGet package
 
 ### _or_
 
-you can use git and pack it yourself
+you can use 
+`sudo dotnet add package VaccuumLogistics -v 1.0.0`
 
 ## Usage
 
