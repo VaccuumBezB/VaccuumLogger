@@ -12,6 +12,7 @@ you can use this NuGet package
 
 you can use 
 `sudo dotnet add package VaccuumLogistics -v 1.0.0`
+`sudo dotnet add package VaccuumLogistics -v 1.0.1`
 
 ## Usage
 
