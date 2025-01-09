@@ -1,7 +1,16 @@
 # Vaccuum Logger
 
-Simple logging system for.NET applications and Unity.
-This library is suitable for most C# applications, but is aimed at unity games and desktop dotnet-app
+_Simple logging system for.NET applications and Unity.
+This library is suitable for most C# applications, but is aimed at unity games and desktop dotnet-app_
+
+## Installation
+
+you can use this NuGet package
+`sudo dotnet add package https://github.com/VaccuumBezB/VaccuumLogger/blob/main/VaccuumLogistics.1.0.0.nupkg`
+
+### _or_
+
+you can use git and pack it yourself
 
 ## Usage
 
@@ -18,7 +27,7 @@ Logger.Log("Application Launched");
 -`Warn()` - warning
 -`Error()` - error
 -`Critical()` - critical error
--`Exception() - to log exceptions
+-`Exception()` - to log exceptions
 
 ## Setup
 
