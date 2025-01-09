@@ -3,6 +3,10 @@
 Simple logging system for.NET applications and Unity.
 This library is suitable for most C# applications, but is aimed at unity games and desktop dotnet-app
 
+## Installation
+
+`dotnet add package VaccuumLogistics -v 1.0.0-1.0.1`
+
 ## Usage
 
 ### Announcement
