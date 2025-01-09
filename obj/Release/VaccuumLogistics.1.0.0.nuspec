@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>VaccuumLogistics</id>
+    <version>1.0.0</version>
+    <authors>VaccuumLogistics</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net9.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/home/artem_linux/VaccuumLogistics/bin/Release/net9.0/VaccuumLogistics.dll" target="lib/net9.0/VaccuumLogistics.dll" />
+  </files>
+</package>

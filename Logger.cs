@@ -15,13 +15,13 @@ public class Logger
     
     private void Initialize()
     {
-        log?.Dispose(); // Закрываем старый поток, если он был
+        log?.Dispose(); // Close Stream
         log = File.OpenWrite(name + ".log");
         log.Write(new UTF8Encoding(true).GetBytes($"Vac'cuum log system\nStarted: {DateTime.Now}\n=============================================\n"));
     }
 
     ///<summary>
-    ///Стандартный конструктор логгера, укажите имя в скобках
+    ///Default logger constructor
     ///</summary>
     public Logger(string _name)
     {
@@ -29,29 +29,28 @@ public class Logger
         Initialize();
     }
 
-    // Добавляем деструктор для освобождения ресурсов
+    // Destructor
     ~Logger()
     {
         log?.Dispose();
     }
 
-    // Добавляем метод для принудительного закрытия лога
+    // Close log method
     public static void Close()
     {
         log?.Dispose();
         log = null;
     }
 
-    // В остальных методах заменяем прямое обращение к log на проверку
     private static void WriteToLog(byte[] data)
     {
         if (log == null)
         {
-            Console.WriteLine("ВНИМАНИЕ: Логгер не инициализирован!");
+            Console.WriteLine("WARNING: INITIALIZATION FAILED!");
             return;
         }
         log.Write(data);
-        log.Flush(); // Принудительно записываем в файл
+        log.Flush();
     }
 
     public static void Configure(bool showTimestamp = true, bool showStackTrace = true, bool openLogsOnCritical = true)
@@ -68,10 +67,10 @@ public class Logger
         if (includeTimestamp)
             message.Append($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} ");
             
-        message.Append($"----- {level} ");
+        message.Append($":: {level} ");
         
         if (includeStackTrace)
-            message.Append($"from [{new System.Diagnostics.StackTrace().ToString()}]: \n\t");
+            message.Append($"from [{new System.Diagnostics.StackTrace().ToString()}]: \t");
             
         message.Append(content);
         message.Append("\n");
@@ -80,11 +79,11 @@ public class Logger
     }
 
     ///<summary>
-    ///Метод обычного отчёта
+    ///Log method
     ///</summary>
     public static void Log(string content)
     {
-        string message = FormatLogMessage("0xF0 Log", content);
+        string message = FormatLogMessage("✉ [Log]", content);
         WriteToLog(new UTF8Encoding().GetBytes(message));
         
         Console.ForegroundColor = ConsoleColor.White;
@@ -93,11 +92,11 @@ public class Logger
     }
 
     ///<summary>
-    ///Метод информационного сообщения
+    ///Info message method
     ///</summary>
     public static void Info(string content)
     {
-        string message = FormatLogMessage("0xF1 Info", content);
+        string message = FormatLogMessage("ℹ [Info]", content);
         WriteToLog(new UTF8Encoding().GetBytes(message));
         
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -110,7 +109,7 @@ public class Logger
     ///</summary>
     public static void Success(string content)
     {
-        string message = FormatLogMessage("0xF2 Success", content);
+        string message = FormatLogMessage("😼 [Success]", content);
         WriteToLog(new UTF8Encoding().GetBytes(message));
         
         Console.ForegroundColor = ConsoleColor.Green;
@@ -123,7 +122,7 @@ public class Logger
     ///</summary>
     public static void Warn(string text)
     {
-        string message = FormatLogMessage("0xE2 Warning", text);
+        string message = FormatLogMessage("⚠ [Warning]", text);
         WriteToLog(new UTF8Encoding().GetBytes(message));
         
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -136,7 +135,7 @@ public class Logger
     ///</summary>
     public static void Error(string _text)
     {
-        string message = FormatLogMessage("0xE1 Error", _text);
+        string message = FormatLogMessage("😠 [Error]", _text);
         WriteToLog(new UTF8Encoding().GetBytes(message));
         
         Console.ForegroundColor = ConsoleColor.Red;
@@ -149,7 +148,7 @@ public class Logger
     ///</summary>
     public static void Critical(string text, bool openLog = true)
     {
-        string message = FormatLogMessage("0xE0 CRITICAL", text);
+        string message = FormatLogMessage("☠ [CRITICAL]", text);
         WriteToLog(new UTF8Encoding().GetBytes(message));
         
         Console.ForegroundColor = ConsoleColor.Red;
@@ -166,7 +165,7 @@ public class Logger
     ///</summary>
     public static void Exception(Exception ex, bool openLog = true)
     {
-        string message = FormatLogMessage("0xE0 EXCEPTION", 
+        string message = FormatLogMessage("☠ [EXCEPTION]", 
             $"{ex.Message}\nStackTrace:\n{ex.StackTrace}");
         WriteToLog(new UTF8Encoding().GetBytes(message));
         
