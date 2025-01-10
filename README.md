@@ -1,7 +1,7 @@
 # Vaccuum Logger
 
-Simple logging system for.NET applications and Unity.
-This library is suitable for most C# applications, but is aimed at unity games and desktop dotnet-app
+Simple logging system for .NET applications and Unity games.
+This library is suitable for most C# applications, but is aimed at unity games and desktop dotnet-apps
 
 ## Installation
 
@@ -9,7 +9,7 @@ This library is suitable for most C# applications, but is aimed at unity games a
 
 ## Usage
 
-### Announcement
+### Initialization
 
 var logger = new Logger("namehere"); //Will create namehere.log
 Logger.Log("Application Launched");
@@ -21,7 +21,7 @@ Logger.Log("Application Launched");
 -`Success()` - successful execution
 -`Warn()` - warning
 -`Error()` - error
--`Critical()` - critical error
+-`Critical()` - critical error (automatically closes app)
 -`Exception() - to log exceptions
 
 ## Setup
